@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بابا علی</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Tahoma, Arial, sans-serif;
+      background: linear-gradient(135deg, #ffe0b2, #ffcc80);
+      color: #333;
+    }
+
+    .page {
+      width: 90%;
+      max-width: 430px;
+      background: white;
+      border-radius: 25px;
+      padding: 30px 22px;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+      animation: show 0.4s ease;
+    }
+
+    @keyframes show {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: #f5c16c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 75px;
+      border: 6px solid #8d5524;
+    }
+
+    h1 {
+      margin: 10px 0 25px;
+      font-size: 25px;
+    }
+
+    .message {
+      font-size: 22px;
+      line-height: 2;
+      font-weight: bold;
+      margin: 20px 5px 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #ddd;
+      border-radius: 15px;
+      font-size: 18px;
+      text-align: center;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    input:focus {
+      border-color: #ff9800;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      background: #ff9800;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .back {
+      margin-top: 12px;
+      background: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page" id="app"></div>
+
+  <script>
+    const app = document.getElementById("app");
+
+    // صفحه اول
+    function firstPage() {
+      app.innerHTML = `
+        <div class="avatar">🧔🏽</div>
+
+        <h1>اسم خود را وارد کنید</h1>
+
+        <input
+          id="nameInput"
+          type="text"
+          placeholder="اسمت رو بنویس"
+          autocomplete="off"
+        >
+
+        <button onclick="go()">بریم</button>
+      `;
+    }
+
+    // بررسی اسم
+    function go() {
+      const input = document.getElementById("nameInput");
+      const name = input.value.trim();
+
+      if (!name) {
+        alert("اول اسمت رو وارد کن 😄");
+        return;
+      }
+
+      if (name === "رادین") {
+        warningPage(
+          "کوشی را از دید دیگران قایم کن",
+          "radin"
+        );
+      }
+
+      else if (name === "عارف") {
+        warningPage(
+          "کوشی را از دید دیگران قایم کن",
+          "aref"
+        );
+      }
+
+      else if (name === "امیرسام") {
+        messagePage(
+          "یکم خجالت بکش.<br>خودت میدونی من منظورم چیه"
+        );
+      }
+
+      else if (name === "امیرحسین") {
+        messagePage(
+          "چیلگای واقعی خودتی"
+        );
+      }
+
+      else if (name === "نیکان") {
+        messagePage(
+          "کم تر جنب و جوش داشته"
+        );
+      }
+
+      else {
+        messagePage(
+          "همه میدونن تو یک گاوی"
+        );
+      }
+    }
+
+    // صفحه هشدار
+    function warningPage(text, person) {
+      app.innerHTML = `
+        <div class="avatar">🤫</div>
+
+        <div class="message">
+          ${text}
+        </div>
+
+        <button onclick="nextPage('${person}')">
+          بریم
+        </button>
+      `;
+    }
+
+    // صفحه بعدی رادین / عارف
+    function nextPage(person) {
+
+      if (person === "radin") {
+        messagePage(
+          "مینا که تو رو بلاک کرد، الکی سعی نکن مخ بقیه رو بزنی، کسی بهت پا نمیده"
+        );
+      }
+
+      else if (person === "aref") {
+        messagePage(
+          "از نانا چخبر ؟"
+        );
+      }
+    }
+
+    // نمایش پیام
+    function messagePage(text) {
+      app.innerHTML = `
+        <div class="avatar">😂</div>
+
+        <div class="message">
+          ${text}
+        </div>
+
+        <button onclick="firstPage()">
+          دوباره
+        </button>
+      `;
+    }
+
+    // شروع سایت
+    firstPage();
+  </script>
+
+</body>
+</html>
